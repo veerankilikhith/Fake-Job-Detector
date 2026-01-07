@@ -99,10 +99,12 @@ def index():
         # ---- IMAGE INPUT ----
         elif "job_image" in request.files:
             img_file = request.files["job_image"]
+            print("IMAGE NAME:", img_file.filename)
+
             if img_file.filename:
                 image_bytes = img_file.read()
+                print("IMAGE SIZE:", len(image_bytes))
                 text = extract_text_from_image(image_bytes)
-
         if not text.strip():
             error = "No text detected from input."
             return render_template(
