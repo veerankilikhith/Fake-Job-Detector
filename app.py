@@ -1,4 +1,5 @@
 from datetime import datetime
+import pytz
 import os
 import hashlib
 import requests
@@ -80,15 +81,15 @@ def index():
     result = None
     error = None
 
-    # 🌞 Greeting (UNCHANGED)
-    hour = datetime.now().hour
+    # 🌞 Greeting (IST Time)
+    ist = pytz.timezone("Asia/Kolkata")
+    hour = datetime.now(ist).hour
     if hour < 12:
         greeting = "🌅 Good Morning"
     elif hour < 17:
         greeting = "🌞 Good Afternoon"
     else:
         greeting = "🌙 Good Evening"
-
     if request.method == "POST":
         text = ""
 
